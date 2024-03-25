@@ -11,20 +11,49 @@
 		<link rel="stylesheet" href="./sensor_client.css" />
 	</head>
 	<body>
-		<h1>Данные датчиков</h1>
-		<div id="data">
-			<p>Температура: <span id="temperature">--</span> °C</p>
-			<p>Влажность: <span id="humidity">--</span>%</p>
+		<div class="body_blocks">
+			<div class="nav">
+				<div class="profile">
+					<img src="" alt="" />
+					<p id="status">Hello 👋</p>
+					<p>Jenifer Feroz</p>
+				</div>
+				<div class="nav_menu">
+					<p>Menu</p>
+					<div class="nav_menu_1">
+						<a href="">Menu</a>
+						<a href="">Insights</a>
+						<a href="">Recommends</a>
+						<a id="messages" href="">Messages</a>
+					</div>
+					<p>Settings</p>
+					<div class="nav_menu_2">
+						<a href="">Profile</a>
+						<a href="">FAQ’s</a>
+						<a href="">Contact us</a>
+						<a href="">Logout</a>
+					</div>
+				</div>
+			</div>
+			<div>
+				<h1>Данные датчиков</h1>
+				<div id="data">
+					<p>Температура: <span id="temperature">--</span> °C</p>
+					<p>Влажность: <span id="humidity">--</span>%</p>
+				</div>
+				<button id="open_house" onclick="openHouse()">
+					Открыть/закрыть дом
+				</button>
+				<label for="timeInput">Установите время</label
+				><input type="time" id="timeInput" placeholder="HH:MM" />
+				<button id="sendTime" onclick="sendTime()">Отправить</button>
+
+				<audio id="alarmSound" src="alarm.mp3" preload="auto"></audio>
+			</div>
+			<div class="">
+				<a href=""></a>
+			</div>
 		</div>
-
-		<button id="open_house" onclick="openHouse()">Открыть/закрыть дом</button>
-
-		<label for="timeInput">Установите время</label
-		><input type="time" id="timeInput" placeholder="HH:MM" />
-		<button id="sendTime" onclick="sendTime()">Отправить</button>
-
-		<audio id="alarmSound" src="alarm.mp3" preload="auto"></audio>
-
 		<script>
 			const client = new Paho.MQTT.Client(
 				"test.mosquitto.org",
