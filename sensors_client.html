@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Данные датчиков</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.2/mqttws31.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .red {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<h1>Данные датчиков</h1>
+<div id="data">
+    <p>Температура: <span id="temperature">--</span> °C</p>
+    <p>Влажность: <span id="humidity">--</span>%</p>
+</div>
+
+<button id="open_house" onclick="openHouse()">Открыть/закрыть дом</button>
+
+<label for="timeInput">Установите время</label><input type="time" id="timeInput" placeholder="HH:MM">
+<button id="sendTime" onclick="sendTime()">Отправить</button>
+
+<audio id="alarmSound" src="alarm.mp3" preload="auto"></audio>
+
+<script>
+    const client = new Paho.MQTT.Client(
+        "test.mosquitto.org",
+        Number(8080),
+        "",
+        "sensors_client_js"
+    );
+
+    client.onConnectionLost = onConnectionLost;
+    client.onMessageArrived = onMessageArrived;
+    client.connect({ onSuccess: onConnect });
+
+    function onConnect() {
+        console.log("Connected to MQTT broker");
+        subscribe();
+    }
+
+    function onConnectionLost(responseObject) {
+        if (responseObject.errorCode !== 0) {
+            console.log("Connection lost: " + responseObject.errorMessage);
+        }
+    }
+
+    function onMessageArrived(message) {
+        const topic = message.destinationName;
+        const payload = parseFloat(message.payloadString);
+
+        switch (topic) {
+            case "sensors_temperature_client": {
+                const temperatureElement = document.getElementById("temperature");
+                temperatureElement.textContent = payload.toString();
+                if (payload > 25) {
+                    temperatureElement.classList.add("red");
+                    playAlarm();
+                } else {
+                    temperatureElement.classList.remove("red");
+                }
+                break;
+            }
+            case "sensors_humidity_client": {
+                const humidityElement = document.getElementById("humidity");
+                humidityElement.textContent = payload.toString();
+                if (payload > 70) {
+                    humidityElement.classList.add("red");
+                    playAlarm();
+                } else {
+                    humidityElement.classList.remove("red");
+                }
+                break;
+            }
+            case "devices_client": {
+                playAlarm();
+                break;
+            }
+            case "sensors_doors": {
+                playAlarm();
+                const topic = "house_sensors_doors";
+                if (!client || !client.isConnected()) {
+                    console.log("Client is not connected.");
+                    return;
+                }
+
+                const message = new Paho.MQTT.Message('kitchen');
+                message.destinationName = topic;
+                client.send(message);
+            }
+        }
+    }
+
+    function subscribe() {
+        if (!client || !client.isConnected()) {
+            console.log("Client is not connected.");
+            return;
+        }
+
+        const topicTemperature = "sensors_temperature_client";
+        console.log("Subscribing to topic: " + topicTemperature);
+        client.subscribe(topicTemperature);
+
+        const topicHumidity = "sensors_humidity_client";
+        console.log("Subscribing to topic: " + topicHumidity);
+        client.subscribe(topicHumidity);
+
+        const topicSmartHouseSensorsDoors = "sensors_doors";
+        console.log("Subscribing to topic: " + topicSmartHouseSensorsDoors);
+        client.subscribe(topicSmartHouseSensorsDoors);
+
+        const topicDevices = "devices_client";
+        console.log("Subscribing to topic: " + topicDevices);
+        client.subscribe(topicDevices);
+    }
+
+    function playAlarm() {
+        const alarmSound = document.getElementById("alarmSound");
+        alarmSound.play();
+    }
+
+    function openHouse() {
+        const topic = "lockers";
+        const payload = "mainEntrance";
+
+        if (!client || !client.isConnected()) {
+            console.log("Client is not connected.");
+            return;
+        }
+
+        const message = new Paho.MQTT.Message(payload);
+        message.destinationName = topic;
+        client.send(message);
+    }
+
+    function sendTime() {
+        const timeInput = document.getElementById("timeInput").value;
+        const timeArray = timeInput.split(":");
+        const minutes = parseInt(timeArray[0], 10);
+        const seconds = parseInt(timeArray[1], 10);
+        const totalTimeInSeconds = minutes * 60 + seconds;
+
+        const topic = "devices";
+        const payload = {
+            device: "microwave",
+            string: totalTimeInSeconds
+        };
+
+        if (!client || !client.isConnected()) {
+            console.log("Client is not connected.");
+            return;
+        }
+
+        const message = new Paho.MQTT.Message(JSON.stringify(payload));
+        message.destinationName = topic;
+        client.send(message);
+    }
+</script>
+</body>
+</html>
