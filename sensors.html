@@ -5,12 +5,13 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Симулятор датчиков</title>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.2/mqttws31.min.js"></script>
-		<style></style>
 		<link rel="stylesheet" href="./sensor_style.css" />
 	</head>
 	<body>
 		<h1>Симулятор датчиков</h1>
-		<div id="data">
+
+		<div class="room_one">
+			<p id="kitchen_text">Датчик на кухне</p>
 			<p>Температура: <span id="temperature">--</span> °C</p>
 			<p>Влажность: <span id="humidity">--</span>%</p>
 		</div>
