@@ -1,123 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Симулятор датчиков</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.2/mqttws31.min.js"></script>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-        }
-        #data {
-            margin-top: 20px;
-        }
-    </style>
-</head>
-<body>
-<h1>Симулятор датчиков</h1>
-<div id="data">
-    <p>Температура: <span id="temperature">--</span> °C</p>
-    <p>Влажность: <span id="humidity">--</span>%</p>
-</div>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Симулятор датчиков</title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.2/mqttws31.min.js"></script>
+		<style></style>
+		<link rel="stylesheet" href="./sensor_style.css" />
+	</head>
+	<body>
+		<h1>Симулятор датчиков</h1>
+		<div id="data">
+			<p>Температура: <span id="temperature">--</span> °C</p>
+			<p>Влажность: <span id="humidity">--</span>%</p>
+		</div>
 
-<script>
-    const client = new Paho.MQTT.Client(
-        "test.mosquitto.org",
-        Number(8080),
-        "",
-        "sensors_app_js"
-    );
-    client.onConnectionLost = onConnectionLost;
-    client.onMessageArrived = onMessageArrived;
-    client.connect({ onSuccess: onConnect });
+		<script>
+			const client = new Paho.MQTT.Client(
+				"test.mosquitto.org",
+				Number(8080),
+				"",
+				"sensors_app_js"
+			);
+			client.onConnectionLost = onConnectionLost;
+			client.onMessageArrived = onMessageArrived;
+			client.connect({ onSuccess: onConnect });
 
-    function onConnect() {
-        console.log("Connected to MQTT broker");
-        subscribe();
-    }
+			function onConnect() {
+				console.log("Connected to MQTT broker");
+				subscribe();
+			}
 
-    function onConnectionLost(responseObject) {
-        if (responseObject.errorCode !== 0) {
-            console.log("Connection lost: " + responseObject.errorMessage);
-        }
-    }
+			function onConnectionLost(responseObject) {
+				if (responseObject.errorCode !== 0) {
+					console.log("Connection lost: " + responseObject.errorMessage);
+				}
+			}
 
-    function onMessageArrived(message) {
-        const topic = message.destinationName;
+			function onMessageArrived(message) {
+				const topic = message.destinationName;
 
-        switch (topic) {
-            case "sensors_temperature": {
-                document.getElementById("temperature").value = message.payloadString;
-                break;
-            }
-            case "sensors_humidity": {
-                document.getElementById("humidity").value = message.payloadString;
-                break;
-            }
-        }
-    }
+				switch (topic) {
+					case "sensors_temperature": {
+						document.getElementById("temperature").value =
+							message.payloadString;
+						break;
+					}
+					case "sensors_humidity": {
+						document.getElementById("humidity").value = message.payloadString;
+						break;
+					}
+				}
+			}
 
-    function subscribe() {
-        const topicTemperature = "sensors_temperature_server";
-        if (!client || !client.isConnected()) {
-            console.log("Client is not connected.");
-            return;
-        }
+			function subscribe() {
+				const topicTemperature = "sensors_temperature_server";
+				if (!client || !client.isConnected()) {
+					console.log("Client is not connected.");
+					return;
+				}
 
-        console.log("Subscribing to topic: " + topicTemperature);
-        client.subscribe(topicTemperature);
+				console.log("Subscribing to topic: " + topicTemperature);
+				client.subscribe(topicTemperature);
 
-        const topicHumidity = "sensors_humidity_server";
-        if (!client || !client.isConnected()) {
-            console.log("Client is not connected.");
-            return;
-        }
+				const topicHumidity = "sensors_humidity_server";
+				if (!client || !client.isConnected()) {
+					console.log("Client is not connected.");
+					return;
+				}
 
-        console.log("Subscribing to topic: " + topicHumidity);
-        client.subscribe(topicHumidity);
-    }
+				console.log("Subscribing to topic: " + topicHumidity);
+				client.subscribe(topicHumidity);
+			}
 
-    function generateData() {
-        const temperature = Math.floor(Math.random() * (30 - 10 + 1)) + 10;
-        let temperatureText = document.getElementById("temperature");
+			function generateData() {
+				const temperature = Math.floor(Math.random() * (30 - 10 + 1)) + 10;
+				let temperatureText = document.getElementById("temperature");
 
-        const humidity = Math.floor(Math.random() * (80 - 40 + 1)) + 40;
-        let humidityText = document.getElementById("humidity");
+				const humidity = Math.floor(Math.random() * (80 - 40 + 1)) + 40;
+				let humidityText = document.getElementById("humidity");
 
-        temperatureText.textContent = temperature.toString();
-        sendTemperature(temperature.toString());
+				temperatureText.textContent = temperature.toString();
+				sendTemperature(temperature.toString());
 
-        humidityText.textContent = humidity.toString();
-        sendHumidity(humidity.toString())
-    }
+				humidityText.textContent = humidity.toString();
+				sendHumidity(humidity.toString());
+			}
 
-    function sendTemperature(temperature) {
-        const topic = "sensors_temperature_client";
-        if (!client || !client.isConnected()) {
-            console.log("Client is not connected.");
-            return;
-        }
+			function sendTemperature(temperature) {
+				const topic = "sensors_temperature_client";
+				if (!client || !client.isConnected()) {
+					console.log("Client is not connected.");
+					return;
+				}
 
-        const message = new Paho.MQTT.Message(temperature);
-        message.destinationName = topic;
-        client.send(message);
-    }
+				const message = new Paho.MQTT.Message(temperature);
+				message.destinationName = topic;
+				client.send(message);
+			}
 
-    function sendHumidity(humidity) {
-        const topic = "sensors_humidity_client";
-        if (!client || !client.isConnected()) {
-            console.log("Client is not connected.");
-            return;
-        }
+			function sendHumidity(humidity) {
+				const topic = "sensors_humidity_client";
+				if (!client || !client.isConnected()) {
+					console.log("Client is not connected.");
+					return;
+				}
 
-        const message = new Paho.MQTT.Message(humidity);
-        message.destinationName = topic;
-        client.send(message);
-    }
+				const message = new Paho.MQTT.Message(humidity);
+				message.destinationName = topic;
+				client.send(message);
+			}
 
-    setInterval(generateData, 3000);
-</script>
-</body>
+			setInterval(generateData, 3000);
+		</script>
+	</body>
 </html>
