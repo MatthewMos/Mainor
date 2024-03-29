@@ -54,12 +54,12 @@ img {
 	flex-direction: column;
 	gap: 34px;
 }
-.nav_menu_1 {
+.nav_menu_1 ul {
 	display: flex;
 	flex-direction: column;
 	gap: 24px;
 }
-.nav_menu_2 {
+.nav_menu_2 ul {
 	display: flex;
 	flex-direction: column;
 	gap: 24px;
