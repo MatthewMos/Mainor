@@ -12,6 +12,7 @@ body {
 	overflow-x: hidden;
 	scroll-behavior: smooth;
 	background-color: #e8f3fc;
+	font-family: Chivo;
 }
 
 a {
@@ -37,14 +38,43 @@ img {
 	flex-direction: column;
 	border-radius: 20px;
 	box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
-	background-color: #fff;
 	padding: 0 0 0 24px;
+	width: 250px;
+	height: 670px;
+	flex-grow: 0;
+	background-color: #fff;
 }
 .profile {
-	margin: 52px 24px 52px 24px;
+	margin: 52px 24px 52px 0;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 12px;
+	padding: 0;
+}
+#status {
+	font-family: Chivo;
+	font-size: 16px;
+	font-weight: normal;
+	font-stretch: normal;
+	font-style: normal;
+	line-height: normal;
+	letter-spacing: normal;
+	text-align: left;
+	color: #1d1d1d;
 }
 .profile p {
+	width: 130px;
 	margin: 0;
+	font-family: Chivo;
+	font-size: 20px;
+	font-weight: normal;
+	font-stretch: normal;
+	font-style: normal;
+	line-height: normal;
+	letter-spacing: normal;
+	text-align: left;
+	color: #1d1d1d;
 }
 .red {
 	color: red;
@@ -53,6 +83,33 @@ img {
 	display: flex;
 	flex-direction: column;
 	gap: 34px;
+}
+.nav_menu p {
+	font-family: Chivo;
+	font-size: 20px;
+	font-weight: normal;
+	font-stretch: normal;
+	font-style: normal;
+	line-height: normal;
+	letter-spacing: normal;
+	text-align: left;
+	color: #405d9f;
+}
+.nav_menu a {
+	font-family: Chivo;
+	font-size: 20px;
+	font-weight: normal;
+	font-stretch: normal;
+	font-style: normal;
+	line-height: normal;
+	letter-spacing: normal;
+	text-align: left;
+	color: #6c7894;
+}
+.nav_menu li {
+	display: flex;
+	flex-direction: row;
+	gap: 16px;
 }
 .nav_menu_1 ul {
 	display: flex;
@@ -63,4 +120,243 @@ img {
 	display: flex;
 	flex-direction: column;
 	gap: 24px;
+}
+.room {
+	margin: 53px 0 0 0;
+	display: flex;
+	flex-direction: column;
+}
+.room h1 {
+	font-family: Chivo;
+	font-size: 24px;
+	font-weight: normal;
+	font-stretch: normal;
+	font-style: normal;
+	line-height: normal;
+	letter-spacing: normal;
+	text-align: left;
+	color: #2b2b2b;
+}
+.room_sensor {
+	margin: 28px 0 0 0;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: flex-start;
+	gap: 24px;
+	padding: 0;
+}
+.kitchen {
+	width: 168px;
+	height: 171px;
+	flex-grow: 0;
+	padding: 28px 76px 16px 20px;
+	border-radius: 20px;
+	box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.25);
+	background-image: linear-gradient(224deg, #5667ff 101%, #2396ef 1%);
+}
+.kitchen p:first-child {
+	font-size: 20px;
+	font-weight: normal;
+	font-stretch: normal;
+	font-style: normal;
+	line-height: normal;
+	letter-spacing: normal;
+	text-align: left;
+	color: #fff;
+}
+.kitchen p:last-child {
+	opacity: 0.76;
+	font-size: 16px;
+	font-weight: normal;
+	font-stretch: normal;
+	font-style: normal;
+	line-height: normal;
+	letter-spacing: normal;
+	text-align: left;
+	color: #fff;
+}
+.kitchen img {
+	width: 48px;
+	height: 48px;
+	flex-grow: 0;
+	padding: 12px 10px;
+	border-radius: 12px;
+	background-color: #3054aa;
+	margin-bottom: 32px;
+}
+.living_room {
+	width: 168px;
+	height: 171px;
+	flex-grow: 0;
+	padding: 28px 34px 16px 20px;
+	border-radius: 20px;
+	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.25);
+	background-color: #fff;
+}
+.living_room img {
+	width: 48px;
+	height: 48px;
+	flex-grow: 0;
+	padding: 15px 10px 14.7px;
+	opacity: 0.57;
+	border-radius: 12px;
+	background-color: rgba(35, 150, 239, 0.41);
+	margin-bottom: 32px;
+}
+.bedroom {
+	width: 168px;
+	height: 171px;
+	flex-grow: 0;
+	padding: 28px 62px 16px 20px;
+	border-radius: 20px;
+	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.25);
+	background-color: #fff;
+}
+.bedroom img {
+	width: 48px;
+	height: 48px;
+	flex-grow: 0;
+	padding: 13px 10px 12.2px;
+	opacity: 0.57;
+	border-radius: 12px;
+	background-color: rgba(35, 150, 239, 0.41);
+	margin-bottom: 32px;
+}
+
+.bathroom {
+	width: 168px;
+	height: 171px;
+	flex-grow: 0;
+	padding: 28px 54px 16px 20px;
+	border-radius: 20px;
+	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.25);
+	background-color: #fff;
+}
+.bathroom img {
+	width: 48px;
+	height: 48px;
+	flex-grow: 0;
+	padding: 14px 10px 13.1px;
+	opacity: 0.57;
+	border-radius: 12px;
+	background-color: #cce6fb;
+	margin-bottom: 32px;
+}
+.level {
+	margin: 40px 0 0 0;
+}
+.level h1 {
+	font-size: 24px;
+	font-weight: normal;
+	font-stretch: normal;
+	font-style: normal;
+	line-height: normal;
+	letter-spacing: normal;
+	text-align: left;
+	color: #2b2b2b;
+}
+.device {
+	display: flex;
+	flex-direction: column;
+	margin: 40px 0 0 0;
+}
+.device h1 {
+	font-family: Chivo;
+	font-size: 24px;
+	font-weight: normal;
+	font-stretch: normal;
+	font-style: normal;
+	line-height: normal;
+	letter-spacing: normal;
+	text-align: left;
+	color: #2b2b2b;
+}
+.device_sensor {
+	display: flex;
+	flex-direction: row;
+}
+.air_conditioner {
+	width: 168px;
+	height: 177px;
+	flex-grow: 0;
+	margin: 0 24px 0 0;
+	padding: 24px 24px 16px;
+	border-radius: 20px;
+	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.25);
+	background-color: #fff;
+}
+.air_conditioner img {
+	width: 50px;
+	height: 50px;
+	flex-grow: 0;
+	margin: 28px 70px 16px 0;
+	padding: 10px;
+	border-radius: 12px;
+	background-color: #3e7ef7;
+}
+.smart_tv {
+	width: 168px;
+	height: 177px;
+	flex-grow: 0;
+	margin: 0 24px 0 0;
+	padding: 24px 24px 16px;
+	border-radius: 20px;
+	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.25);
+	background-color: #fff;
+}
+.smart_tv img {
+	width: 50px;
+	height: 50px;
+	flex-grow: 0;
+	margin: 28px 70px 16px 0;
+	padding: 10px;
+	border-radius: 12px;
+	background-color: #3e7ef7;
+}
+.coffee_machine {
+	width: 168px;
+	height: 177px;
+	flex-grow: 0;
+	margin: 0 24px 0 0;
+	padding: 24px 24px 16px;
+	border-radius: 20px;
+	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.25);
+	background-color: #fff;
+}
+.coffee_machine img {
+	width: 50px;
+	height: 50px;
+	flex-grow: 0;
+	margin: 28px 70px 16px 0;
+	padding: 10px;
+	border-radius: 12px;
+	background-color: #3e7ef7;
+}
+.refrigerator {
+	width: 168px;
+	height: 177px;
+	flex-grow: 0;
+	margin: 0 24px 0 0;
+	padding: 24px 24px 16px;
+	border-radius: 20px;
+	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.25);
+	background-color: #fff;
+}
+.refrigerator img {
+	width: 50px;
+	height: 50px;
+	flex-grow: 0;
+	margin: 28px 70px 16px 0;
+	padding: 10px;
+	border-radius: 12px;
+	background-color: #3e7ef7;
+}
+.line {
+	margin-top: 65px;
+	width: 1px;
+	height: 625px;
+	flex-grow: 0;
+	transform: rotate(0deg);
+	background-color: #bcb5b5;
 }
