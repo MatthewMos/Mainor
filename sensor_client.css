@@ -309,30 +309,28 @@ img {
 	flex-direction: row;
 }
 
-.device_sensor input[type="checkbox"] {
+.switch {
 	height: 0;
 	width: 0;
 	visibility: hidden;
 }
 
-.device_sensor label {
+.label {
 	cursor: pointer;
-	text-indent: -9999px;
+	font-size: 0;
 	width: 40px;
 	height: 20px;
-	background: grey;
+	background-color: #929ba3;
 	display: block;
+	border-radius: 100px;
 	position: relative;
-	margin: 2px 0 2px 52px;
-	border-radius: 10px;
-	box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.25);
 }
 
-.device_sensor label:after {
+.label:after {
 	content: "";
 	position: absolute;
-	top: 2.75px;
-	left: 5px;
+	top: 2px;
+	left: 2px;
 	width: 16px;
 	height: 16px;
 	background: #fff;
@@ -340,17 +338,13 @@ img {
 	transition: 0.3s;
 }
 
-.device_sensor input:checked + label {
-	background: #bada55;
+.switch:checked + label {
+	background-color: #3e7ef7;
 }
 
-.device_sensor input:checked + label:after {
-	left: calc(100% - 5px);
+.switch:checked + label:after {
+	left: calc(100% - 2px);
 	transform: translateX(-100%);
-}
-
-.device_sensor label:active:after {
-	width: 20px;
 }
 
 .air_conditioner {
@@ -445,6 +439,45 @@ img {
 	flex-direction: row;
 	margin-bottom: 34px;
 }
+
+.switch_2 {
+	height: 0;
+	width: 0;
+	visibility: hidden;
+}
+
+.label_2 {
+	cursor: pointer;
+	font-size: 0;
+	width: 40px;
+	height: 20px;
+	background-image: linear-gradient(102deg, #f71983 -19%, #ff8d52 105%);
+	display: block;
+	border-radius: 100px;
+	position: relative;
+}
+
+.label_2:after {
+	content: "";
+	position: absolute;
+	top: 2px;
+	left: 2px;
+	width: 16px;
+	height: 16px;
+	background: #fff;
+	border-radius: 90px;
+	transition: 0.3s;
+}
+
+.switch_2:checked + label {
+	background: #bada55;
+}
+
+.switch_2:checked + label:after {
+	left: calc(100% - 2px);
+	transform: translateX(-100%);
+}
+
 .info_bar a {
 	width: 40px;
 	height: 40px;
@@ -454,11 +487,34 @@ img {
 	border: solid 1px #4b65a2;
 }
 .members_list {
+	margin-top: 24px;
 	height: 352px;
 	padding: 32px 20px 40px 24px;
 	border-radius: 24px;
 	box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.25);
 	background-color: #fff;
+}
+.members_list h1 {
+	font-family: Chivo;
+	font-size: 20px;
+	font-weight: normal;
+	font-stretch: normal;
+	font-style: normal;
+	line-height: normal;
+	letter-spacing: normal;
+	text-align: left;
+	color: #1d1d1d;
+}
+.members_list p {
+	font-family: Chivo;
+	font-size: 16px;
+	font-weight: normal;
+	font-stretch: normal;
+	font-style: normal;
+	line-height: normal;
+	letter-spacing: normal;
+	text-align: left;
+	color: rgba(29, 29, 29, 0.5);
 }
 .members_tag {
 	display: flex;
@@ -476,12 +532,38 @@ img {
 	text-align: left;
 	color: #3c80f7;
 }
-.add_member a {
+.jaquiline {
+	display: flex;
+	flex-direction: row;
+	margin-bottom: 25px;
+	gap: 12px;
+}
+.sennorita {
+	display: flex;
+	flex-direction: row;
+	margin-bottom: 25px;
+	gap: 12px;
+}
+.firoz {
+	display: flex;
+	flex-direction: row;
+	gap: 12px;
+}
+
+.add_member {
 	width: 220px;
 	height: 56px;
-	flex-grow: 0;
 	margin: 32px 0 0;
 	padding: 16px 49px;
 	border-radius: 55px;
 	background-color: #ccdbfd;
+	font-family: Chivo;
+	font-size: 19px;
+	font-weight: normal;
+	font-stretch: normal;
+	font-style: normal;
+	line-height: normal;
+	letter-spacing: normal;
+	text-align: left;
+	color: #3f7df8;
 }
