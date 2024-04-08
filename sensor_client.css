@@ -40,7 +40,7 @@ img {
 	box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
 	padding: 0 0 0 24px;
 	width: 250px;
-	height: 670px;
+	height: 862px;
 	flex-grow: 0;
 	background-color: #fff;
 }
@@ -155,7 +155,7 @@ img {
 	box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.25);
 	background-image: linear-gradient(224deg, #5667ff 101%, #2396ef 1%);
 }
-.kitchen p:first-child {
+.room_sensor p:first-child {
 	font-size: 20px;
 	font-weight: normal;
 	font-stretch: normal;
@@ -165,16 +165,16 @@ img {
 	text-align: left;
 	color: #fff;
 }
-.kitchen p:last-child {
-	opacity: 0.76;
-	font-size: 16px;
+.room_sensor p:last-child {
+	font-family: Chivo;
+	font-size: 15px;
 	font-weight: normal;
 	font-stretch: normal;
 	font-style: normal;
 	line-height: normal;
 	letter-spacing: normal;
 	text-align: left;
-	color: #fff;
+	color: #1d1d1d;
 }
 .kitchen img {
 	width: 48px;
@@ -303,6 +303,25 @@ img {
 	letter-spacing: normal;
 	text-align: left;
 	color: #2b2b2b;
+	margin-bottom: 24px;
+}
+.device p {
+	font-family: Chivo;
+	font-size: 16px;
+	font-weight: normal;
+	font-stretch: normal;
+	font-style: normal;
+	line-height: normal;
+	letter-spacing: normal;
+	text-align: left;
+	color: #284680;
+	margin: 16px 5px 0 0;
+}
+.device img {
+	width: 50px;
+	height: 50px;
+	margin: 28px 70px 16px 0;
+	padding: 10px;
 }
 .device_sensor {
 	display: flex;
@@ -324,6 +343,7 @@ img {
 	display: block;
 	border-radius: 100px;
 	position: relative;
+	margin: 0;
 }
 
 .label:after {
@@ -350,9 +370,8 @@ img {
 .air_conditioner {
 	width: 168px;
 	height: 177px;
-	flex-grow: 0;
 	margin: 0 24px 0 0;
-	padding: 24px 24px 16px;
+	padding: 0 24px 16px 16px;
 	border-radius: 20px;
 	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.25);
 	background-color: #fff;
@@ -360,8 +379,7 @@ img {
 .air_conditioner img {
 	width: 50px;
 	height: 50px;
-	flex-grow: 0;
-	margin: 28px 70px 16px 0;
+	margin: 28px 50px 16px 0;
 	padding: 10px;
 	border-radius: 12px;
 	background-color: #3e7ef7;
@@ -369,9 +387,8 @@ img {
 .smart_tv {
 	width: 168px;
 	height: 177px;
-	flex-grow: 0;
 	margin: 0 24px 0 0;
-	padding: 24px 24px 16px;
+	padding: 0 24px 16px 16px;
 	border-radius: 20px;
 	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.25);
 	background-color: #fff;
@@ -379,8 +396,7 @@ img {
 .smart_tv img {
 	width: 50px;
 	height: 50px;
-	flex-grow: 0;
-	margin: 28px 70px 16px 0;
+	margin: 28px 50px 16px 0;
 	padding: 10px;
 	border-radius: 12px;
 	background-color: #3e7ef7;
@@ -388,9 +404,8 @@ img {
 .coffee_machine {
 	width: 168px;
 	height: 177px;
-	flex-grow: 0;
 	margin: 0 24px 0 0;
-	padding: 24px 24px 16px;
+	padding: 0 24px 16px 16px;
 	border-radius: 20px;
 	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.25);
 	background-color: #fff;
@@ -398,8 +413,7 @@ img {
 .coffee_machine img {
 	width: 50px;
 	height: 50px;
-	flex-grow: 0;
-	margin: 28px 70px 16px 0;
+	margin: 28px 50px 16px 0;
 	padding: 10px;
 	border-radius: 12px;
 	background-color: #3e7ef7;
@@ -407,9 +421,8 @@ img {
 .refrigerator {
 	width: 168px;
 	height: 177px;
-	flex-grow: 0;
 	margin: 0 24px 0 0;
-	padding: 24px 24px 16px;
+	padding: 0 24px 16px 16px;
 	border-radius: 20px;
 	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.25);
 	background-color: #fff;
@@ -417,16 +430,15 @@ img {
 .refrigerator img {
 	width: 50px;
 	height: 50px;
-	flex-grow: 0;
-	margin: 28px 70px 16px 0;
+	margin: 28px 50px 16px 0;
 	padding: 10px;
 	border-radius: 12px;
 	background-color: #3e7ef7;
 }
 .line {
-	margin-top: 65px;
+	margin-top: 110px;
 	width: 1px;
-	height: 625px;
+	height: 740px;
 	flex-grow: 0;
 	transform: rotate(0deg);
 	background-color: #bcb5b5;
@@ -437,7 +449,10 @@ img {
 .info_bar {
 	display: flex;
 	flex-direction: row;
-	margin-bottom: 34px;
+	margin: 0 0 34px 46px;
+}
+.info_bar a {
+	margin: auto;
 }
 
 .switch_2 {
@@ -566,4 +581,65 @@ img {
 	letter-spacing: normal;
 	text-align: left;
 	color: #3f7df8;
+}
+.signal {
+	width: 11px;
+	height: 11px;
+	flex-grow: 0;
+	margin: 4px 8px 8px 0;
+	background-color: #2bedb3;
+	border-radius: 90px;
+}
+.history_text {
+	display: flex;
+	flex-direction: row;
+	margin: 40px 0 40px 0;
+	justify-content: space-between;
+}
+.history_text a {
+	font-family: Chivo;
+	font-size: 20px;
+	font-weight: normal;
+	font-stretch: normal;
+	font-style: normal;
+	line-height: normal;
+	letter-spacing: normal;
+	text-align: left;
+	color: #3c80f7;
+}
+.history_text {
+	font-family: Chivo;
+	font-size: 20px;
+	font-weight: normal;
+	font-stretch: normal;
+	font-style: normal;
+	line-height: normal;
+	letter-spacing: normal;
+	text-align: left;
+	color: #000;
+}
+.history_sensor {
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+}
+.air_conditioner_sensor {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+.smart_tv_sensor {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+.refrigerator_sensor {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+.coffee_machine_sensor {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
 }
