@@ -97,24 +97,18 @@
 						<div class="sensor_1">
 							<div class="sensor_1_text">
 								<p>Назавание датчика</p>
-								<select name="choice_sensor" id="sensor_select">
-									<option value="">--Please choose an sensors--</option>
-									<option value="temperature">Temperature</option>
-									<option value="humidity">Humidity</option>
-								</select>
+								<p>Влажность: <span id="humidity">--</span>%</p>
 							</div>
 							<p>Показание</p>
+							<p>Влажность: <span id="humidity">--</span>%</p>
 						</div>
 						<div class="sensor_2">
 							<div class="sensor_2_text">
 								<p>Назавание</p>
-								<select name="choice_sensor" id="sensor_select">
-									<option value="">--Please choose an sensors--</option>
-									<option value="temperature">Temperature</option>
-									<option value="humidity">Humidity</option>
-								</select>
+								<p>Температура: <span id="temperature">--</span> °C</p>
 							</div>
 							<p>Показание</p>
+							<p>Температура: <span id="temperature">--</span> °C</p>
 						</div>
 					</div>
 				</div>
@@ -170,11 +164,8 @@
 
 			<div class="end_body">
 				<div class="info_bar">
-					<input type="checkbox" class="switch_2" id="switch4" /><label
-						class="label_2"
-						for="switch4"
-						>Toggle</label
-					>
+					<input type="checkbox" class="switch_2" id="switch4" onchange="handleCheckboxChange()" />
+					<label class="label_2" for="switch4">Toggle</label>
 					<a href=""><img src="./img/Notification.svg" alt="" /></a>
 					<a href=""><img src="./img/help-circle.svg" alt="" /></a>
 				</div>
@@ -251,9 +242,10 @@
 					</div>
 				</div>
 			</div>
+			<audio id="alarmSound" src="alarm.mp3" preload="auto"></audio>
 		</div>
 
-		<!--<div>
+		<!-- <div>
 				<h1>Данные датчиков</h1>
 				<div id="data">
 					<p>Температура: <span id="temperature">--</span> °C</p>
@@ -271,18 +263,37 @@
 			<div class="">
 				<a href=""></a>
 			</div>
-		</div>
+		</div> -->
 		<script>
 			const client = new Paho.MQTT.Client(
 				"test.mosquitto.org",
-				Number(8081),
+				Number(8080),
 				"",
-				"sensors_client_js_2"
+				"sensors_client_js_4"
 			);
 
-			client.onConnectionLost = onConnectionLost;
-			client.onMessageArrived = onMessageArrived;
-			client.connect({ onSuccess: onConnect });
+			function connect() {
+				client.onConnectionLost = onConnectionLost;
+				client.onMessageArrived = onMessageArrived;
+				client.connect({ onSuccess: onConnect });
+			}
+
+			function disconnect() {
+				if (client.isConnected()) {
+				client.disconnect();
+				console.log('disconnected');
+			}
+  }
+
+			function handleCheckboxChange() {
+				var checkbox = document.getElementById('switch4');
+				if (checkbox.checked) {
+					connect();
+				} else {
+					disconnect();
+				}
+			}
+			
 
 			function onConnect() {
 				console.log("Connected to MQTT broker");
@@ -405,6 +416,6 @@
 				message.destinationName = topic;
 				client.send(message);
 			}
-		</script>-->
+		</script>
 	</body>
 </html>
