@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MqttApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+415bf1cc01b4e6af07e1a2d8ad4666d99d1e7c0f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+dbc2649de3a55b81f16a14a00492a2a7833439b0")]
 [assembly: System.Reflection.AssemblyProductAttribute("MqttApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MqttApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
