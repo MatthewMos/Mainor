@@ -44,7 +44,8 @@
 							</li>
 						</ul>
 					</div>
-
+					<input type="time" id="timeInput" />
+					<button onclick="sendTime()">Send</button>
 					<p>Settings</p>
 					<div class="nav_menu_2">
 						<ul>
@@ -165,12 +166,7 @@
 
 			<div class="end_body">
 				<div class="info_bar">
-					<input
-						type="checkbox"
-						class="switch_2"
-						id="switch4"
-						onchange="handleCheckboxChange()"
-					/>
+					<input type="checkbox" class="switch_2" id="switch4" onchange="handleCheckboxChange()" />
 					<label class="label_2" for="switch4">Toggle</label>
 					<a href=""><img src="./img/Notification.svg" alt="" /></a>
 					<a href=""><img src="./img/help-circle.svg" alt="" /></a>
@@ -286,19 +282,20 @@
 
 			function disconnect() {
 				if (client.isConnected()) {
-					client.disconnect();
-					console.log("disconnected");
-				}
+				client.disconnect();
+				console.log('disconnected');
 			}
+  }
 
 			function handleCheckboxChange() {
-				var checkbox = document.getElementById("switch4");
+				var checkbox = document.getElementById('switch4');
 				if (checkbox.checked) {
 					connect();
 				} else {
 					disconnect();
 				}
 			}
+			
 
 			function onConnect() {
 				console.log("Connected to MQTT broker");
@@ -409,7 +406,7 @@
 				const topic = "devices";
 				const payload = {
 					device: "microwave",
-					string: totalTimeInSeconds,
+					message: totalTimeInSeconds,
 				};
 
 				if (!client || !client.isConnected()) {
