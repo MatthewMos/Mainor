@@ -153,7 +153,8 @@ img {
 	padding: 28px 76px 16px 20px;
 	border-radius: 20px;
 	box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.25);
-	background-image: linear-gradient(224deg, #5667ff 101%, #2396ef 1%);
+	background-color: #fff;
+	transition: background-color 0.5s ease;
 }
 .room_sensor p:first-child {
 	font-size: 20px;
@@ -184,6 +185,10 @@ img {
 	border-radius: 12px;
 	background-color: #3054aa;
 	margin-bottom: 32px;
+}
+.kitchen:hover,
+.kitchen:active {
+	background-image: linear-gradient(224deg, #5667ff 101%, #2396ef 1%);
 }
 .living_room {
 	width: 168px;
@@ -609,7 +614,7 @@ img {
 }
 .history_text {
 	font-family: Chivo;
-	font-size: 25px;
+	font-size: 20px;
 	font-weight: normal;
 	font-stretch: normal;
 	font-style: normal;
