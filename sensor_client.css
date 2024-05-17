@@ -121,6 +121,10 @@ img {
 	flex-direction: column;
 	gap: 24px;
 }
+.body_info {
+	display: flex;
+	flex-direction: column;
+}
 .room {
 	margin: 53px 0 0 0;
 	display: flex;
