@@ -44,8 +44,7 @@
 							</li>
 						</ul>
 					</div>
-					<input type="time" id="timeInput" />
-					<button onclick="sendTime()">Send</button>
+
 					<p>Settings</p>
 					<div class="nav_menu_2">
 						<ul>
@@ -96,41 +95,53 @@
 					<h1>Level</h1>
 					<div class="line_1">
 						<div class="graph">
-							<div class="sensor_1">
-								<div class="sensor_1_text">
-									<p>Назавание датчика</p>
+							<div class="sensor sensor_1">
+								<div class="sensor_text sensor_1_text">
+									<p>Sensor name...</p>
 								</div>
-								<p>Показание</p>
-								<p>Влажность: <span id="humidity">--</span>%</p>
-								<p>Температура: <span id="temperature">--</span> °C</p>
+								<p class="sensor_values">Indications</p>
+								<p>Humidity: <span class="humidity humidity_1">--</span>%</p>
+								<p>
+									Temperature:
+									<span class="temperature temperature_1">--</span> °C
+								</p>
 							</div>
-							<div class="sensor_2">
-								<div class="sensor_2_text">
-									<p>Назавание датчика</p>
+							<div class="sensor sensor_2">
+								<div class="sensor_text sensor_2_text">
+									<p>Sensor name...</p>
 								</div>
-								<p>Показание</p>
-								<p>Влажность: <span id="humidity">--</span>%</p>
-								<p>Температура: <span id="temperature">--</span> °C</p>
+								<p class="sensor_values">Indications</p>
+								<p>Humidity: <span class="humidity humidity_2">--</span>%</p>
+								<p>
+									Temperature:
+									<span class="temperature temperature_2">--</span> °C
+								</p>
 							</div>
 						</div>
 					</div>
 					<div class="line_2">
 						<div class="graph">
-							<div class="sensor_1">
-								<div class="sensor_1_text">
-									<p>Назавание датчика</p>
+							<div class="sensor sensor_3">
+								<div class="sensor_text sensor_3_text">
+									<p>Air Humidity</p>
 								</div>
-								<p>Показание</p>
-								<p>Влажность: <span id="humidity">--</span>%</p>
-								<p>Температура: <span id="temperature">--</span> °C</p>
+								<p class="sensor_values">Indications</p>
+								<p>Humidity: <span class="humidity humidity_3">--</span>%</p>
+								<p>
+									Temperature:
+									<span class="temperature temperature_3">--</span> °C
+								</p>
 							</div>
-							<div class="sensor_2">
-								<div class="sensor_2_text">
-									<p>Назавание датчика</p>
+							<div class="sensor sensor_4">
+								<div class="sensor_text sensor_4_text">
+									<p>Sensor name...</p>
 								</div>
-								<p>Показание</p>
-								<p>Влажность: <span id="humidity">--</span>%</p>
-								<p>Температура: <span id="temperature">--</span> °C</p>
+								<p class="sensor_values">Indications</p>
+								<p>Humidity: <span class="humidity humidity_4">--</span>%</p>
+								<p>
+									Temperature:
+									<span class="temperature temperature_4">--</span> °C
+								</p>
 							</div>
 						</div>
 					</div>
@@ -140,9 +151,9 @@
 					<h1>Devices</h1>
 					<div class="device_sensor">
 						<div class="air_conditioner">
-							<input type="checkbox" class="switch" id="switch" /><label
+							<input type="checkbox" class="switch" id="switch1" /><label
 								class="label"
-								for="switch"
+								for="switch1"
 								>Toggle</label
 							>
 							<img src="./img/snowflake-icon (1) 1.svg" alt="" />
@@ -150,19 +161,19 @@
 							<p>Air Conditioner</p>
 						</div>
 						<div class="smart_tv">
-							<input type="checkbox" class="switch" id="switch1" /><label
+							<input type="checkbox" class="switch" id="switch2" /><label
 								class="label"
-								for="switch1"
+								for="switch2"
 								>Toggle</label
 							>
 							<img src="./img/snowflake-icon (1) 1 (1).svg" alt="" />
 
-							<p>Smart TV</p>
+							<p>Air Humidity</p>
 						</div>
 						<div class="coffee_machine">
-							<input type="checkbox" class="switch" id="switch2" /><label
+							<input type="checkbox" class="switch" id="switch3" /><label
 								class="label"
-								for="switch2"
+								for="switch3"
 								>Toggle</label
 							>
 							<img src="./img/snowflake-icon (1) 1 (2).svg" alt="" />
@@ -170,9 +181,9 @@
 							<p>Coffee Machine</p>
 						</div>
 						<div class="refrigerator">
-							<input type="checkbox" class="switch" id="switch3" /><label
+							<input type="checkbox" class="switch" id="switch4" /><label
 								class="label"
-								for="switch3"
+								for="switch4"
 								>Toggle</label
 							>
 							<img src="./img/snowflake-icon (1) 1 (3).svg" alt="" />
@@ -189,10 +200,10 @@
 					<input
 						type="checkbox"
 						class="switch_2"
-						id="switch4"
+						id="switch5"
 						onchange="handleCheckboxChange()"
 					/>
-					<label class="label_2" for="switch4">Toggle</label>
+					<label class="label_2" for="switch5">Toggle</label>
 					<a href=""><img src="./img/Notification.svg" alt="" /></a>
 					<a href=""><img src="./img/help-circle.svg" alt="" /></a>
 				</div>
@@ -298,163 +309,187 @@
 				"",
 				"sensors_client_js_4"
 			);
+			const sensors = [
+				"Air Conditioner",
+				"Air Humidity",
+				"Coffee Machine",
+				"Refridgerator",
+			];
 
-			function connect() {
+			document.addEventListener("DOMContentLoaded", () => {
+				const sensorsListText = document.querySelectorAll(".sensor_text > p");
+				sensorsListText.forEach(
+					(text, index) => (text.innerText = sensors[index])
+				);
+
+				document.querySelector(".device").addEventListener("click", e => {
+					const input = e.target.closest(".switch");
+					if (input) {
+						const activeSensor = `sensor_${input.id.slice(-1)}`;
+						if (!input.checked) {
+							resetData(input.id.slice(-1));
+							clearInterval(getCurrentIntervalId(activeSensor));
+							localStorage.removeItem(activeSensor);
+						} else if (client.isConnected()) {
+							const currIntervalId = setInterval(
+								generateData(activeSensor),
+								3000
+							);
+							localStorage.setItem(activeSensor, currIntervalId);
+						} else {
+							console.log("You didn't connect to broker");
+						}
+					}
+				});
+			});
+
+			const getCurrentIntervalId = sensorId =>
+				JSON.parse(localStorage.getItem(sensorId));
+
+			const connect = () => {
 				client.onConnectionLost = onConnectionLost;
 				client.onMessageArrived = onMessageArrived;
 				client.connect({ onSuccess: onConnect });
-			}
+			};
 
-			function disconnect() {
+			const disconnect = () => {
 				if (client.isConnected()) {
 					client.disconnect();
 					console.log("disconnected");
 				}
-			}
+			};
 
-			function handleCheckboxChange() {
-				var checkbox = document.getElementById("switch4");
+			const handleCheckboxChange = () => {
+				const checkbox = document.getElementById("switch5");
 				if (checkbox.checked) {
 					connect();
 				} else {
 					disconnect();
+					const localStorageKeys = Object.keys(localStorage);
+					localStorageKeys.forEach(key => {
+						const intervalId = JSON.parse(localStorage.getItem(key));
+						clearInterval(intervalId);
+					});
+					const sensors = document.querySelectorAll(".sensor");
+					Array.from(sensors).forEach((_, index) => {
+						const currSwitch = document.getElementById(`switch${index + 1}`);
+						currSwitch.checked = false;
+						resetData(index + 1);
+					});
 				}
-			}
+			};
 
-			function onConnect() {
+			const onConnect = () => {
 				console.log("Connected to MQTT broker");
 				subscribe();
-			}
+			};
 
-			function onConnectionLost(responseObject) {
+			const resetData = sensorId => {
+				const elements = [
+					document.querySelector(`.temperature_${sensorId}`),
+					document.querySelector(`.humidity_${sensorId}`),
+				];
+				elements.forEach(element => {
+					element.textContent = "--";
+					element.classList.remove("red");
+				});
+			};
+
+			const onConnectionLost = responseObject => {
 				if (responseObject.errorCode !== 0) {
 					console.log("Connection lost: " + responseObject.errorMessage);
 				}
-			}
+			};
 
-			function onMessageArrived(message) {
-				const topic = message.destinationName;
-				const payload = parseFloat(message.payloadString);
+			const onMessageArrived = message => {
+				const { destinationName: topic, payloadString } = message;
+				const payload = JSON.parse(payloadString);
+				const sensorId = payload.sensor.slice(-1);
 
-				switch (topic) {
-					case "sensors_temperature_client": {
-						const temperatureElement = document.getElementById("temperature");
-						temperatureElement.textContent = payload.toString();
-						if (payload > 25) {
-							temperatureElement.classList.add("red");
-							playAlarm();
-						} else {
-							temperatureElement.classList.remove("red");
-						}
-						break;
-					}
-					case "sensors_humidity_client": {
-						const humidityElement = document.getElementById("humidity");
-						humidityElement.textContent = payload.toString();
-						if (payload > 70) {
-							humidityElement.classList.add("red");
-							playAlarm();
-						} else {
-							humidityElement.classList.remove("red");
-						}
-						break;
-					}
-					case "devices_client": {
-						playAlarm();
-						break;
-					}
-					case "sensors_doors": {
-						playAlarm();
-						const topic = "house_sensors_doors";
-						if (!client || !client.isConnected()) {
-							console.log("Client is not connected.");
-							return;
-						}
-
-						const message = new Paho.MQTT.Message("kitchen");
-						message.destinationName = topic;
-						client.send(message);
-					}
-				}
-			}
-
-			function subscribe() {
-				if (!client || !client.isConnected()) {
-					console.log("Client is not connected.");
-					return;
-				}
-
-				const topicTemperature = "sensors_temperature_client";
-				console.log("Subscribing to topic: " + topicTemperature);
-				client.subscribe(topicTemperature);
-
-				const topicHumidity = "sensors_humidity_client";
-				console.log("Subscribing to topic: " + topicHumidity);
-				client.subscribe(topicHumidity);
-
-				const topicSmartHouseSensorsDoors = "sensors_doors";
-				console.log("Subscribing to topic: " + topicSmartHouseSensorsDoors);
-				client.subscribe(topicSmartHouseSensorsDoors);
-
-				const topicDevices = "devices_client";
-				console.log("Subscribing to topic: " + topicDevices);
-				client.subscribe(topicDevices);
-			}
-
-			function playAlarm() {
-				const alarmSound = document.getElementById("alarmSound");
-				alarmSound.play();
-			}
-
-			function openHouse() {
-				const topic = "lockers";
-				const payload = "mainEntrance";
-
-				if (!client || !client.isConnected()) {
-					console.log("Client is not connected.");
-					return;
-				}
-
-				const message = new Paho.MQTT.Message(payload);
-				message.destinationName = topic;
-				client.send(message);
-			}
-
-			function sendTime() {
-				const timeInput = document.getElementById("timeInput").value;
-				const timeArray = timeInput.split(":");
-				const minutes = parseInt(timeArray[0], 10);
-				const seconds = parseInt(timeArray[1], 10);
-				const totalTimeInSeconds = minutes * 60 + seconds;
-
-				const topic = "devices";
-				const payload = {
-					device: "microwave",
-					message: totalTimeInSeconds,
+				const updateElement = (selector, value, threshold) => {
+					const element = document.querySelector(selector);
+					element.textContent = value.toString();
+					element.classList.toggle("red", value > threshold);
 				};
 
-				if (!client || !client.isConnected()) {
-					console.log("Client is not connected.");
-					return;
+				switch (topic) {
+					case "sensors_temperature_client":
+						updateElement(`.temperature_${sensorId}`, payload.value, 25);
+						break;
+					case "sensors_humidity_client":
+						updateElement(`.humidity_${sensorId}`, payload.value, 70);
+						break;
+					case "devices_client":
+					case "sensors_doors":
+						playAlarm();
+						if (topic === "sensors_doors") {
+							sendMQTTMessage("house_sensors_doors", "kitchen");
+						}
+						break;
 				}
+			};
 
-				const message = new Paho.MQTT.Message(JSON.stringify(payload));
-				message.destinationName = topic;
-				client.send(message);
-			}
+			const subscribe = () => {
+				if (client.isConnected()) {
+					[
+						"sensors_temperature_client",
+						"sensors_humidity_client",
+						"sensors_doors",
+						"devices_client",
+					].forEach(topic => {
+						console.log(`Subscribing to topic: ${topic}`);
+						client.subscribe(topic);
+					});
+				} else {
+					console.log("Client is not connected.");
+				}
+			};
 
-			document.addEventListener("DOMContentLoaded", function () {
-				var checkbox = document.querySelector("#switch1");
-				var sensorReadings = document.querySelector(".sensor_1");
+			const playAlarm = () => document.getElementById("alarmSound").play();
 
-				checkbox.addEventListener("change", function () {
-					if (this.checked) {
-						sensorReadings.style.display = "block";
-					} else {
-						sensorReadings.style.display = "none";
-					}
-				});
-			});
+			const openHouse = () => sendMQTTMessage("lockers", "mainEntrance");
+
+			const sendTime = () => {
+				const [minutes, seconds] = document
+					.getElementById("timeInput")
+					.value.split(":")
+					.map(Number);
+				const totalTimeInSeconds = minutes * 60 + seconds;
+				sendMQTTMessage(
+					"devices",
+					JSON.stringify({ device: "microwave", message: totalTimeInSeconds })
+				);
+			};
+
+			const generateData = sensor => () => {
+				const sensorId = sensor.slice(-1);
+				const temperature = getRandomValue(10, 30);
+				const humidity = getRandomValue(40, 80);
+				document.querySelector(`.temperature_${sensorId}`).textContent =
+					temperature;
+				document.querySelector(`.humidity_${sensorId}`).textContent = humidity;
+				sendMQTTMessage(
+					"sensors_temperature_client",
+					JSON.stringify({ value: temperature, sensor })
+				);
+				sendMQTTMessage(
+					"sensors_humidity_client",
+					JSON.stringify({ value: humidity, sensor })
+				);
+			};
+
+			const sendMQTTMessage = (topic, payload) => {
+				if (client.isConnected()) {
+					const message = new Paho.MQTT.Message(payload);
+					message.destinationName = topic;
+					client.send(message);
+				} else {
+					console.log("Client is not connected.");
+				}
+			};
+
+			const getRandomValue = (min, max) =>
+				Math.floor(Math.random() * (max - min + 1)) + min;
 		</script>
 	</body>
 </html>
